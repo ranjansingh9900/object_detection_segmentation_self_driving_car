@@ -1,0 +1,107 @@
+from src.models.Detection.Faster_RCNN import Faster_RCNN
+from src.models.Segmentation.MaskRCNN import Mask_RCNN
+from util import *
+import warnings
+import argparse
+import yaml
+import torch
+import sys
+
+warnings.filterwarnings("ignore")
+
+COLOR_MAP = ['blue', 'orange', 'green', 'red', 'purple', 'brown', 'pink', 'gray', 'olive', 'cyan', 'blue']
+
+if __name__ == '__main__':
+    # Define the parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--source', type=str, help='the path of the image or video')
+    parser.add_argument('--data', type=str, default="./data/fasterrcnn.yaml", help='data.yaml path')
+    parser.add_argument('--weights', type=str, default=None, help='train from checkpoint')
+    parser.add_argument('--confidence-score', type=float, default=0.5, help='confidence score used to predict')
+    parser.add_argument('--model', type=str, default='fasterrcnn', choices=['fasterrcnn', 'deeplab', 'maskrcnn', 'yolov5', 'yolov7'],
+                        help='the model and task you want to perform')
+    parser.add_argument('--save-path', type=str, default="predicted_image.jpg",
+                        help='Path to save the image with bounding boxes')
+
+    # Fetch the params from the parser
+    args = parser.parse_args()
+
+    source = args.source
+    confidence_score = args.confidence_score
+    weights = args.weights  # Check point to continue training
+    save_path = args.save_path
+    model_name = args.model  # the name of the model: fastercnn, maskrcnn, deeplab
+
+    with open(args.data, 'r') as f:
+        data = yaml.safe_load(f)  # data from .yaml file
+
+    obj_cls = data['classes']  # the classes we want to work one
+    relative_path = data['relative_path']  # relative path to the dataset
+
+    # create idx and cls dict
+    idx_to_cls = create_cls_dic(obj_cls)
+
+    # check source path
+    assert os.path.exists(source), "This image doesn't exists"
+
+    # Load model
+    if model_name == 'fasterrcnn':
+        try:
+            model = Faster_RCNN.load_from_checkpoint(weights)  # Faster RCNN
+            output, fps = detection_predict(model=model, image=source, confidence_score=confidence_score)
+            display(image=source, prediction=output, save_path=save_path,
+                    idx_to_cls=idx_to_cls)  # display result and save it
+        except Exception as e:
+            print("Could not load the model weights. Please make sure you're providing the correct model weights.")
+            sys.exit()
+    elif model_name == 'maskrcnn':
+        try:
+            model = Mask_RCNN.load_from_checkpoint(weights)  # Mask RCNN
+            output, fps = detection_predict(model=model, image=source, confidence_score=confidence_score)
+            display(image=source, prediction=output, save_path=save_path,
+                    idx_to_cls=idx_to_cls)  # display result and save it
+        except Exception as e:
+            print("Could not load the model weights. Please make sure you're providing the correct model weights.")
+            sys.exit()
+
+    elif model_name.startswith('yolov5'):
+        try:
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            model = torch.hub.load('./yolov5', 'custom', path=weights, source='local', force_reload=True, _verbose=False)
+            model.conf = confidence_score
+        except Exception as e:
+            print("Could not load the model weights. Please make sure you're providing the correct model weights.")
+            sys.exit()
+        try:
+            image = Image.open(source)
+            results = model(image)
+            results.print()
+            results.save(save_dir='./results/yolov7')
+        except Exception as e:
+            print(e)
+            sys.exit()
+
+    elif model_name.startswith('yolov7'):
+        try:
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            model = torch.hub.load('./yolov7', 'custom', path_or_model=weights, source='local')
+            model.conf = confidence_score
+        except Exception as e:
+            print("Could not load the model weights. Please make sure you're providing the correct model weights.")
+            sys.exit()
+        try:
+            image = Image.open(source)
+            results = model(image)
+            results.print()
+            results.save(save_dir='./results/yolov7')
+        except Exception as e:
+            print(e)
+            sys.exit()
+
+
+    if model_name == 'fasterrcnn' or model_name == 'maskrcnn':
+        # get prediction
+        output, fps = detection_predict(model=model, image=source, confidence_score=confidence_score)
+        print(f"Frame per Second: {fps}")  # speed
+        display(image=source, prediction=output, save_path=save_path,
+                idx_to_cls=idx_to_cls)  # display result and save it
