@@ -1,13 +1,13 @@
 # Import Libraries
-import os
-import random
-from pathlib import Path
-from PIL import Image
-import json
-from collections import deque
+import os  # Operating system functionality
+import random  # Random number generation
+from pathlib import Path  # Path manipulation
+from PIL import Image  # Image processing library
+import json  # JSON serialization/deserialization
+from collections import deque  # Double-ended queue for efficient appending and popping
 
-from torch.utils import data
-import torchvision.transforms as transforms
+from torch.utils import data  # PyTorch data utilities
+import torchvision.transforms as transforms  # Torchvision transformations
 
 
 class BDD(data.Dataset):
@@ -74,28 +74,6 @@ class BDD(data.Dataset):
             cls_to_idx[self.obj_cls[idx]] = idx
             idx_to_cls[idx] = self.obj_cls[idx]
             idx += 1
-            # if obj is a traffic light, add the class with the color except the NA
-            """
-            if obj == 'traffic light':
-
-                cls_to_idx['tl_G'] = idx
-                idx_to_cls[idx] = 'tl_G'
-                idx += 1
-
-                cls_to_idx['tl_R'] = idx
-                idx_to_cls[idx] = 'tl_R'
-                idx += 1
-
-                cls_to_idx['tl_Y'] = idx
-                idx_to_cls[idx] = 'tl_Y'
-                idx += 1
-
-            else:
-                cls_to_idx[self.obj_cls[idx]] = idx
-                idx_to_cls[idx] = self.obj_cls[idx]
-                idx += 1
-            """
-
 
         return cls_to_idx, idx_to_cls
 
@@ -155,7 +133,7 @@ class BDD(data.Dataset):
             t_ = transforms.Compose([
                 transforms.ToTensor(),  # convert the image to tensor
                 transforms.Normalize(mean=[0.407, 0.457, 0.485],
-                                     std=[0.229, 0.224, 0.225])  # normalize the image using mean ans std
+                                     std=[0.229, 0.224, 0.225])  # normalize the image using mean and std
             ])
             return t_(img)
         else:
@@ -165,7 +143,7 @@ class BDD(data.Dataset):
         """
         method the get image from the list of images
         :param idx: index of the image in the list of images
-        :param apply_transform: Boolean value to check if we want to apply transform or no
+        :param apply_transform: Boolean value to check if we want to apply transform or not
         :return: PIL image or Tensor
         """
         image = Image.open(self.db[idx]['image_path'])
