@@ -1,33 +1,11 @@
 ## object_detection_segmentation_self_driving_car
  ## About Dataset [read more about dataset](https://docs.google.com/document/d/1wLVyAp8HUIT9b4_SVX5RMHUrkyVYUSmb/edit?usp=drive_link&ouid=117477926192622339096&rtpof=true&sd=true).
 
- ## SRC Directory
-  config  [link](https://drive.google.com/file/d/1qd0hQX3P1epQ6XZF2tIEUrgGydBkqfOI/view?usp=drive_link).
- 
-  data --> Holds dataset related file 
-  [bdd.py](https://github.com/ranjansingh9900/object_detection_segmentation_self_driving_car/blob/main/src/dataset/bdd.py). 
-
-
-
-  [config](https://drive.google.com/file/d/1qd0hQX3P1epQ6XZF2tIEUrgGydBkqfOI/view?usp=drive_link). : Configuration files for the project, with a default configuration provided in defaults.py.
-
- dataset: Contains classes and utilities related to dataset handling. It includes various subclasses for different tasks such as detection, drivable area      segmentation, and instance segmentation. bdd_utils.py likely contains utility functions for working with the BDD dataset.
-
-dbs: Pre-created databases in JSON format for testing and training.
-
-models: Contains the implementation of models for different tasks such as detection and segmentation. There are specific files for each type of model like detection_models.py and segmenation_models.py.
-
-utils: Contains utility functions, including data loaders and general-purpose utilities.
-
-
-
-This project structure seems to be for a computer vision project focused on various tasks such as object detection, instance segmentation, drivable area segmentation, and data handling. Let's break down the structure:
-
 1. **src**: This directory contains the source code of the project.
 
-    - **config**: Contains configuration files for different tasks.
+    - **config**: [link](https://drive.google.com/file/d/1qd0hQX3P1epQ6XZF2tIEUrgGydBkqfOI/view?usp=drive_link). Contains configuration files for different tasks.
     - **dataset**: Contains classes and utilities related to dataset handling.
-        - **bdd.py**: Superclass dataset, possibly defining common functionality for different dataset types.
+        - **bdd.py**: [link](https://github.com/ranjansingh9900/object_detection_segmentation_self_driving_car/blob/main/src/dataset/bdd.py). Superclass dataset, possibly defining common functionality for different dataset types.
         - **bdd_detection.py**, **bdd_drivable_segmentation.py**, **bdd_instance_segmentation.py**: Subclasses for specific tasks.
         - **bdd_utils.py**: Utility functions for dataset handling.
     - **dbs**: Contains pre-created databases for testing and training.
