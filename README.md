@@ -6,7 +6,7 @@
     - **config**: [link](https://drive.google.com/file/d/1qd0hQX3P1epQ6XZF2tIEUrgGydBkqfOI/view?usp=drive_link). Contains configuration files for different tasks.
     - **dataset**: Contains classes and utilities related to dataset handling.
         - **bdd.py**: [link](https://drive.google.com/file/d/1R6zdDsTYglLwevYFNcW1PEm6i_5zOKQw/view?usp=drive_link). Superclass dataset, possibly defining common functionality for different dataset types.
-        - **bdd_detection.py** [link](https://drive.google.com/file/d/1vuL83RXVgq58H5_pZaj5o1Eo-SBiFg1O/view?usp=drive_link). , **bdd_drivable_segmentation.py** [link](https://drive.google.com/file/d/15NG9b0bQ0YvQU1fiW-xzSXfloKhcX0RB/view?usp=drive_link). , **bdd_instance_segmentation.py**[link](https://drive.google.com/file/d/1lrolPIEmRnnzY5WAc-fRWirzsaJkkNNk/view?usp=drive_link). : Subclasses for specific tasks.
+        - **bdd_detection.py** [link](https://drive.google.com/file/d/1vuL83RXVgq58H5_pZaj5o1Eo-SBiFg1O/view?usp=drive_link). , **bdd_drivable_segmentation.py** [link](https://drive.google.com/file/d/15NG9b0bQ0YvQU1fiW-xzSXfloKhcX0RB/view?usp=drive_link). , **bdd_instance_segmentation.py** [link](https://drive.google.com/file/d/1lrolPIEmRnnzY5WAc-fRWirzsaJkkNNk/view?usp=drive_link). : Subclasses for specific tasks.
         - **bdd_utils.py** [link](https://drive.google.com/file/d/1unve0-1gf61UTV1cfKzuR1ljBexJ5J6R/view?usp=drive_link). : Utility functions for dataset handling.
     - **dbs**: Contains pre-created databases for testing and training.
     - **models**: Contains definitions for different models used in the project.
