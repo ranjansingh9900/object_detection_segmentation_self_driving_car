@@ -22,22 +22,24 @@
 2. **doc**: Documentation files, possibly including images.
 
 3. **scripts**: Scripts for downloading data and weights.
+   data.py [link](https://drive.google.com/file/d/10M0a34YnNyruFdu7tFwesfYzBpr3cr4g/view?usp=drive_link): This script likely handles the downloading and preparation of data for your project from Google Drive or another source.
+   weights.py [link](https://drive.google.com/file/d/10M0a34YnNyruFdu7tFwesfYzBpr3cr4g/view?usp=drive_link): This script probably deals with downloading pre-trained model weights or checkpoints from Google Drive or another online repository.
 
-4. **api**: Contains Flask application files for serving models via API.
+5. **api** [link](https://drive.google.com/file/d/1iOx88-5lHbSarWHDPbxNH07ooWXg03Nb/view?usp=drive_link): Contains Flask application files for serving models via API.
 
-5. **yolov5**, **yolov6**, **yolov7**: Directories possibly containing repositories for different versions of YOLO model implementations.
+6. **yolov5** [link](https://drive.google.com/file/d/1JifxHHBpoOqBfJQJp6pz7pUzvbU982Ck/view?usp=drive_link) **yolov6** [link](https://drive.google.com/file/d/1nWM86vPQRjECXsD8Bu0pwNL83hhvS3U3/view?usp=drive_link), **yolov7** [link](https://drive.google.com/file/d/1Q5y3P_5aTY2yj-Sq1I-BEgZmUez2QZK7/view?usp=drive_link): Directories possibly containing repositories for different versions of YOLO model implementations.
 
-6. **dataset**: Directory containing the dataset used in the project.
+7. **dataset** [link](https://docs.google.com/document/d/1wLVyAp8HUIT9b4_SVX5RMHUrkyVYUSmb/edit?usp=drive_link&ouid=117477926192622339096&rtpof=true&sd=true): Directory containing the dataset used in the project.
 
-7. **train.py**: Script for training models.
+8. **train.py** [link](https://drive.google.com/file/d/1g4xKy4ZAhCWJq59FXrZQMDlFy_7wIQSE/view?usp=drive_link): Script for training models.
 
-8. **test.py**: Script for testing models.
+9. **test.py** [link](https://drive.google.com/file/d/1qPPoHh_nSYFJcAhLpHXhReDbP7O5T68K/view?usp=drive_link): Script for testing models.
 
-9. **detect.py**: Script for running inference.
+10. **detect.py** [link](https://drive.google.com/file/d/1BGJAvzrAX1izL4chG_BJNERp9zf-LiBS/view?usp=drive_link): Script for running inference.
 
-10. **prepare.py**: Script for preparing data for YOLO algorithms.
+11. **prepare.py** [link](https://drive.google.com/file/d/16VEc2f-Anq6892vxZlYs4lqLUgmkbb0Q/view?usp=drive_link): Script for preparing data for YOLO algorithms.
 
-11. **util.py**: Contains various utility functions related to training, testing, and detection.
+12. **util.py** [link](https://drive.google.com/file/d/16Yn-__I00YRPeUX3fshi_ObDpu-AvZRn/view?usp=drive_link): Contains various utility functions related to training, testing, and detection.
 
 This structure indicates a well-organized project with clear separation of concerns, making it easier to maintain and extend. It also includes documentation and scripts for data handling and model serving, which are essential for practical deployment.
   
